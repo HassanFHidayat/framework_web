@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TableController;
 use App\Http\Middleware\TableMiddleware;
 use App\Http\Controllers\ListController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,4 +45,16 @@ Route::get('/list/ordered', [
 
 Route::get('/exam', [
     ExamController::class, 'index'
+]);
+
+Route::get('/insert-product', [
+    ProductController::class, 'create'
+]);
+
+Route::post('/product-insert', [
+    ProductController::class, 'store'
+]);
+
+Route::get('/view-product', [
+    ProductController::class, 'index'
 ]);
