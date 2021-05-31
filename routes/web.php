@@ -20,7 +20,7 @@ use App\Http\Controllers\ProductController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layout.main');
 });
 
 Route::get('/data/2021', function () {
@@ -55,6 +55,18 @@ Route::post('/product-insert', [
     ProductController::class, 'store'
 ]);
 
-Route::get('/view-product', [
+Route::get('/view-product-records', [
     ProductController::class, 'index'
+]);
+
+Route::get('/edit/{id}', [
+    ProductController::class, 'edit'
+]);
+
+Route::patch('/edit/{id}', [
+    ProductController::class, 'update'
+]);
+
+Route::delete('/delete-product/{id}', [
+    ProductController::class, 'destroy'
 ]);

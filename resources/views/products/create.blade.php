@@ -19,7 +19,13 @@
                 </div>
                 <div class="form-group">
                     <label for="category_id">Category</label>
-                    <input type="text" class="form-control" id="category_id" name="category_id">
+                    <select class="custom-select" id="category_id" name="category_id">
+                        <option selected>Pilih Category</option>
+                        @foreach ($category as $cat )
+                        <option value="{{ $cat -> id }}">{{ $cat -> name }}</option>
+                        @endforeach
+                    </select>
+                    <!--<input type="text" class="form-control" id="category_id" name="category_id">-->
                 </div>
                 <button type="submit" class="btn btn-primary">Tambah</button>
             </form>

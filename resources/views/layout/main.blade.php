@@ -21,8 +21,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link active" href="{{ url('/') }}">Home</a>
-                    <a class="nav-link" href="{{ url('/about') }}">About</a>
+                    <a class="nav-link  " href="{{ url('/') }}">Home</a>
+                    <a class="nav-link" href="{{ url('/view-product-records') }}">Products</a>
                 </div>
             </div>
         </div>

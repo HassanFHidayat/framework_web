@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use DB;
@@ -16,7 +17,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = FacadesDB::select('select * from Product');
+        $products = Product::with('category')->get();
         return view('products.index', ['products' => $products]);
     }
 
@@ -27,7 +28,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        $category = FacadesDB::select('select * from category');
+        return view('products.create', ['category' => $category]);
     }
 
     /**
@@ -66,7 +68,8 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = FacadesDB::select('SELECT * FROM Product WHERE id=?', [$id]);
+        return view('products.edit', ['product' => $product]);
     }
 
     /**
@@ -78,7 +81,11 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $name = $request->input('name');
+        $price = $request->input('price');
+        $category_id = $request->input('category_id');
+        FacadesDB::update('UPDATE Product SET name=?, price=?, category_id=? WHERE id=?', [$name, $price, $category_id, $id]);
+        return redirect('/view-product')->with('status', 'Data berhasil diupdate');
     }
 
     /**
@@ -89,6 +96,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        FacadesDB::delete('DELETE FROM Product WHERE id= ?', [$id]);
+        return redirect('/view-product')->with('status', 'Data berhasil dihapus');
     }
 }
