@@ -8,3 +8,5 @@
 8. Run ```php artisan migrate```
 9. Run ```php artisan serve```
 10. Go to localhost:8000
+
+Source : https://stackoverflow.com/a/39913449
